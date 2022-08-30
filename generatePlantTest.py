@@ -2,14 +2,12 @@
 # coding: utf-8
 
 # ## Monthly Plant ID test
-# 
-# 
-
-# In[ ]:
-
+#
+#
 
 # load libraries
 import os
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -56,15 +54,14 @@ for f in fruit:
 df = pd.DataFrame(answers.items(), columns=['plant', f"answer"])
 df['answer'] = df['answer'].str.upper()
 df['incorrect'] = ''
-df.loc[df['plant']!=df['answer'], "incorrect"] = "X"
+df.loc[df['plant']!=df['answer'], "incorrect"] = 1
 print("")
 print(df)
 
-df.to_excel(f"tests/MonthlyPlantTest_{month}_{monero}.xlsx", index=False)
+score = df['incorrect'].sum()/len(df)
+print(f"Your score: {score}")
 
+df.to_excel(f"tests/MonthlyPlantTest_{month}_{monero}.xlsx", index=False)
+sys.exit("Goodbye, and have a nice day!")
 
 # In[ ]:
-
-
-
-
